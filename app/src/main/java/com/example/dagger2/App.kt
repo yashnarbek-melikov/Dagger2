@@ -3,8 +3,9 @@ package com.example.dagger2
 import android.app.Application
 import com.example.dagger2.di.component.AppComponent
 import com.example.dagger2.di.component.DaggerAppComponent
+import com.example.dagger2.di.module.DatabaseModule
 
-class App: Application() {
+class App : Application() {
 
     companion object {
         lateinit var appComponent: AppComponent
@@ -12,6 +13,6 @@ class App: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerAppComponent.builder().build()
+        appComponent = DaggerAppComponent.builder().databaseModule(DatabaseModule(applicationContext)).build()
     }
 }
